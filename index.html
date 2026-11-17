@@ -1,0 +1,978 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>IE352 Renkli Not Defteri</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap">
+<style>
+/* Layout: ruled notebook page, sticky tab strip, one colour per chapter, white cards on lined paper */
+:root{
+  --paper:#f4f7fc; --line:#d9e3f2; --card:#ffffff; --fg:#1d2433; --muted:#566178; --edge:#dbe2ee;
+  --on-hue:#ffffff; --ok:#1e7a3c; --ok-bg:#e6f6ea;
+  --c1:#c2255c; --c2:#c2570a; --c3:#2b8a3e; --c4:#1864ab; --c5:#5f3dc4; --c6:#0b7285; --c7:#a61e1e; --c8:#8a6100; --c9:#364fc7; --c10:#862e9c;
+  --font-display:'Caveat','Segoe Print','Comic Sans MS',cursive;
+  --font-body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#12151d; --line:#1d2330; --card:#1b202b; --fg:#e8ebf3; --muted:#a3adc2; --edge:#2b3342;
+    --on-hue:#11141b; --ok:#7be09a; --ok-bg:#16301f;
+    --c1:#f783ac; --c2:#ffa94d; --c3:#69db7c; --c4:#74c0fc; --c5:#b197fc; --c6:#66d9e8; --c7:#ff8787; --c8:#ffd43b; --c9:#91a7ff; --c10:#e599f7;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12151d; --line:#1d2330; --card:#1b202b; --fg:#e8ebf3; --muted:#a3adc2; --edge:#2b3342;
+  --on-hue:#11141b; --ok:#7be09a; --ok-bg:#16301f;
+  --c1:#f783ac; --c2:#ffa94d; --c3:#69db7c; --c4:#74c0fc; --c5:#b197fc; --c6:#66d9e8; --c7:#ff8787; --c8:#ffd43b; --c9:#91a7ff; --c10:#e599f7;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background-color:var(--paper);
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--line) 31px,var(--line) 32px);
+  color:var(--fg); font-family:var(--font-body); font-size:16px; line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 48px;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.wrap{max-width:860px;margin:0 auto}
+header.cover{padding-block:36px 8px}
+.cover h1{font-family:var(--font-display);font-size:clamp(2.6rem,9vw,4.2rem);line-height:1;margin:0 0 10px;font-weight:700}
+.cover h1 span{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--c8) 35%,transparent) 58%);padding:0 6px}
+.cover p{margin:0;color:var(--muted);max-width:62ch}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);padding-block:10px;margin-block:14px 4px;border-bottom:2px solid var(--edge)}
+.tabs ul{list-style:none;margin:0;padding:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.tabs a{display:block;white-space:nowrap;text-decoration:none;font-weight:800;font-size:.9rem;padding:5px 12px;border-radius:999px;color:var(--hue);border:2px solid var(--hue);background:color-mix(in srgb,var(--hue) 10%,var(--card))}
+.tabs a:hover,.tabs a:focus-visible{background:var(--hue);color:var(--on-hue);outline:none}
+.sec{scroll-margin-top:72px;margin-top:40px}
+.sec-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.tag{font-family:var(--font-display);font-size:1.7rem;font-weight:700;line-height:1;background:var(--hue);color:var(--on-hue);padding:6px 16px 8px;border-radius:12px 12px 12px 3px;transform:rotate(-2deg)}
+.sec-head h2{font-family:var(--font-display);font-size:clamp(1.8rem,6vw,2.5rem);line-height:1.1;margin:0;font-weight:700;color:var(--hue);text-wrap:balance;min-width:0}
+.card{background:var(--card);border:2px solid var(--edge);border-radius:14px;padding:16px 18px;margin-bottom:14px;min-width:0}
+.card.hl{border-color:color-mix(in srgb,var(--hue) 55%,var(--edge));background:color-mix(in srgb,var(--hue) 7%,var(--card))}
+.card h3{margin:0 0 8px;font-size:1.08rem;font-weight:800;color:var(--hue);text-wrap:balance}
+.card p{margin:0 0 8px}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.card ul{margin:0 0 8px;padding-left:1.25rem}
+.card li{margin-bottom:4px}
+.card li::marker{color:var(--hue);font-weight:800}
+.card ul ul{margin-top:4px}
+b,strong{font-weight:800;background:linear-gradient(transparent 55%,color-mix(in srgb,var(--hue) 26%,transparent) 55%)}
+.tw{overflow-x:auto;margin:6px 0 10px;border-radius:10px;border:2px solid var(--edge)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.93rem;background:var(--card)}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--edge)}
+th{background:color-mix(in srgb,var(--hue) 20%,var(--card));color:var(--fg);font-weight:800}
+td:first-child{font-weight:700}
+tr:last-child td{border-bottom:0}
+.qs{display:grid;gap:14px;margin-top:6px}
+.q{display:grid;grid-template-columns:auto 1fr;gap:12px;background:var(--card);border:2px solid var(--edge);border-radius:14px;padding:14px 16px;min-width:0}
+.qn{font-family:var(--font-display);font-size:1.6rem;font-weight:700;line-height:1;width:2.3rem;height:2.3rem;border-radius:50%;background:var(--hue);color:var(--on-hue);display:grid;place-items:center;flex:none}
+.qb{min-width:0}
+.qt{margin:0 0 8px;font-weight:700}
+.opts{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:4px}
+.opts li{padding:4px 10px;border-radius:8px;background:color-mix(in srgb,var(--hue) 7%,var(--card));border:1px solid var(--edge)}
+.opts li i{font-style:normal;font-weight:800;color:var(--hue);margin-right:4px}
+.ans{background:var(--ok-bg);border-left:5px solid var(--ok);border-radius:8px;padding:8px 12px;font-size:.95rem}
+.ans b{background:none;color:var(--ok)}
+.q p.qt b,.q .opts b{background:none}
+footer{margin-top:44px;text-align:center;font-family:var(--font-display);font-size:1.6rem;color:var(--muted)}
+@media (max-width:480px){.q{grid-template-columns:1fr}.card{padding:14px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+<header class="cover">
+<h1><span>IE352</span> Not Defteri</h1>
+<p>Slaytlardaki 7 bölümün hepsini (Ch1, 2, 3, 4, 5, 6, 10) önceliklendirerek anlattım, sonra 2 ayrı 20'şer soruluk deneme hazırladım. Gerçek sınav büyük ihtimalle İngilizce olduğu için <b>soruları İngilizce</b>, <b>açıklamaları Türkçe</b> yazdım.</p>
+</header>
+
+<nav class="tabs" aria-label="Bölümler"><ul>
+<li><a href="#ch1" style="--hue:var(--c1)">Ch1</a></li>
+<li><a href="#ch2" style="--hue:var(--c2)">Ch2</a></li>
+<li><a href="#ch3" style="--hue:var(--c3)">Ch3</a></li>
+<li><a href="#ch4" style="--hue:var(--c4)">Ch4</a></li>
+<li><a href="#ch5" style="--hue:var(--c5)">Ch5</a></li>
+<li><a href="#ch6" style="--hue:var(--c6)">Ch6</a></li>
+<li><a href="#ch10" style="--hue:var(--c7)">Ch10</a></li>
+<li><a href="#tuzak" style="--hue:var(--c8)">Son dakika</a></li>
+<li><a href="#denemea" style="--hue:var(--c9)">Deneme A</a></li>
+<li><a href="#denemeb" style="--hue:var(--c10)">Deneme B</a></li>
+</ul></nav>
+
+<h2 style="font-family:var(--font-display);font-size:2.4rem;margin:28px 0 0;font-weight:700">BÖLÜM 1: SLAYT ANLATIMI</h2>
+
+<!-- ================= Ch1 ================= -->
+<section class="sec" id="ch1" style="--hue:var(--c1)">
+<div class="sec-head"><span class="tag">Ch1</span><h2>Understanding the Supply Chain</h2></div>
+
+<div class="card hl">
+<p><b>Supply chain nedir?</b> Bir müşteri talebini doğrudan veya dolaylı karşılayan tüm taraflardır: manufacturers, suppliers, transporters, warehouses, retailers ve <b>customers</b>. Müşteri zincirin ayrılmaz parçasıdır. Firma içinde de new product development, marketing, operations, distribution, finance ve customer service gibi tüm fonksiyonlar dahildir. Aslında "supply network / supply web" demek daha doğrudur.</p>
+</div>
+
+<div class="card">
+<p><b>Üç akış:</b> Information ve product iki yönlü akar (ör. iadeler). Funds sadece müşteriden tedarikçiye doğru akar. <b>Müşteri tek gelir kaynağıdır.</b></p>
+</div>
+
+<div class="card">
+<h3>Amaç</h3>
+<p>Supply chain surplus = Customer value − Supply chain cost.</p>
+<ul>
+<li>Başarı tek bir aşamanın kârıyla değil, toplam zincir surplus'ıyla ölçülür.</li>
+<li>Home Depot'ta 60$'lık nemlendirici örneği: 60$ eksi tüm zincirin maliyetleri = supply chain profitability, ve bu kâr bütün aşamalar arasında paylaşılır.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>İki süreç görünümü</h3>
+<ul>
+<li><b>Cycle view:</b> Her cycle iki ardışık aşamanın arayüzündedir: Customer order (customer–retailer), Replenishment (retailer–distributor), Manufacturing (distributor–manufacturer), Procurement (manufacturer–supplier).</li>
+<li><b>Push/Pull view:</b> <b>Pull</b> müşteri siparişine tepki olarak (reactive), <b>push</b> siparişi öngörerek (speculative) çalışır. İkisini ayıran çizgi push/pull boundary'dir.
+<ul>
+<li><b>L.L. Bean:</b> procurement, manufacturing ve replenishment push; sadece customer order cycle pull.</li>
+<li><b>Ethan Allen (customized furniture):</b> sadece procurement push; customer order + manufacturing pull.</li>
+</ul></li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Macro processes</h3>
+<ul>
+<li><b>CRM:</b> market, price, sell, call center, order management</li>
+<li><b>ISCM:</b> strategic planning, demand planning, supply planning, fulfillment, field service</li>
+<li><b>SRM:</b> source, negotiate, buy, design collaboration, supply collaboration</li>
+</ul>
+</div>
+
+<div class="card">
+<p><b>Karar fazları:</b> Strategy/design (yıllar, pahalı ve geri dönmesi zor, belirsizliği hesaba katmalı), planning (çeyrek/yıl), operation (günlük/haftalık). Strategy kararları: outsourcing, facility yerleri ve kapasiteleri, hangi ürün nerede üretilecek, taşıma modları, bilgi sistemleri.</p>
+</div>
+
+<div class="card">
+<p><b>Case soruları (Zara, Toyota, Amazon):</b> Zara belirsiz talepli ürünleri yakın/yerel üreticiden (responsive), tahmin edilebilir talepli ürünleri Asya'dan (ucuz) alır ve mağazaları haftada birkaç kez doldurur. Toyota'da plant yeri, esneklik ve kapasite, market allocation ve esnekliğin değeri sorgulanır. Amazon'da depo sayısı/yeri, hangi ürünün nerede stoklanacağı ve online ile mağaza kanalının avantajları sorgulanır.</p>
+</div>
+</section>
+
+<!-- ================= Ch2 ================= -->
+<section class="sec" id="ch2" style="--hue:var(--c2)">
+<div class="sec-head"><span class="tag">Ch2</span><h2>Achieving Strategic Fit</h2></div>
+
+<div class="card">
+<p><b>Strateji hiyerarşisi:</b> Competitive strategy, product development strategy, marketing &amp; sales strategy ve supply chain strategy birbirini desteklemeli.</p>
+</div>
+
+<div class="card hl">
+<p><b>Strategic fit:</b> Competitive strategy ile supply chain strategy'nin hedeflerinin uyumlu olmasıdır. Fit olmamasının iki nedeni vardır: stratejiler uyumsuz olabilir ya da süreç/kaynaklar stratejiyi destekleyecek yetenekte olmayabilir.</p>
+</div>
+
+<div class="card">
+<h3>3 adımlı süreç</h3>
+<p><b>Adım 1: Müşteriyi ve belirsizliği anla.</b></p>
+<ul>
+<li>Müşteri ihtiyaçları: lot miktarı, response time, variety, service level, fiyat, innovation hızı.</li>
+<li><b>Implied demand uncertainty:</b> Tedarik zincirinin karşılamayı planladığı kısım için ortaya çıkan belirsizliktir.</li>
+<li><b>Belirsizliği ARTIRAN şeyler:</b> quantity range artması, response time kısalması, variety artması, service level artması, innovation hızı artması, kanal sayısı artması.</li>
+<li><b>Yüksek implied uncertainty'nin özellikleri:</b> yüksek margin, forecast error %40–100, stockout %10–40, season-end markdown %10–25. Düşük uncertainty'de margin düşük, forecast error %10, stockout %1–2, markdown %0'dır.</li>
+<li>Supply tarafı: sık arıza, düşük/öngörülemez verim, kötü kalite, sınırlı veya esnek olmayan kapasite ve gelişmekte olan üretim süreci supply uncertainty'yi artırır.</li>
+<li>Spektrum: tuz (düşük) → mevcut otomobil modeli → yeni iletişim cihazı (çok yüksek).</li>
+</ul>
+<p><b>Adım 2: Supply chain yeteneklerini anla.</b></p>
+<ul>
+<li>Responsiveness bir maliyettir. <b>Cost-responsiveness efficient frontier</b>, belirli bir responsiveness için mümkün olan en düşük maliyeti gösterir.</li>
+<li>Spektrum: integrated steel mills (çok verimli) → Hanes → otomotiv → Seven-Eleven Japan (çok responsive).</li>
+</ul>
+<p><b>Adım 3: Fit'i sağla.</b> Responsiveness seviyesi implied uncertainty ile uyumlu olmalıdır. Grafikte çapraz <b>zone of strategic fit</b> vardır: Belirsizlik düşükse efficient, yüksekse responsive zincir gerekir. Aşamalara roller dağıtılır (belirsizliği kim absorbe edecek) ve tüm fonksiyonların stratejisi tutarlı olmalıdır.</p>
+</div>
+
+<div class="card">
+<h3>Low-cost vs responsive zincir</h3>
+<div class="tw"><table>
+<thead><tr><th></th><th>Low-cost</th><th>Responsive</th></tr></thead>
+<tbody>
+<tr><td>Amaç</td><td>En düşük maliyetle talebi karşıla</td><td>Talebe hızlı cevap ver</td></tr>
+<tr><td>Ürün tasarımı</td><td>Min maliyetle performans</td><td>Modülerlik, postponement</td></tr>
+<tr><td>Fiyat/margin</td><td>Düşük margin</td><td>Yüksek margin</td></tr>
+<tr><td>Üretim</td><td>Yüksek utilization</td><td>Esnek/yedek kapasite</td></tr>
+<tr><td>Stok</td><td>Minimum</td><td>Buffer inventory</td></tr>
+<tr><td>Lead time</td><td>Maliyet pahasına değil</td><td>Maliyet olsa da agresif kısalt</td></tr>
+<tr><td>Tedarikçi</td><td>Maliyet ve kalite</td><td>Hız, esneklik, güvenilirlik, kalite</td></tr>
+</tbody></table></div>
+</div>
+
+<div class="card">
+<h3>Diğer önemli noktalar</h3>
+<ul>
+<li><b>Tailoring:</b> Farklı müşteri/ürün segmentleri için farklı zincirler kurulur (IKEA düşük belirsizlik, 7-Eleven Japan yüksek belirsizlik, Zara ve Amazon ikisinin karışımı).</li>
+<li><b>Product life cycle:</b> Başlangıçta talep belirsiz, margin yüksek, availability kritik, maliyet ikinci planda. Olgun aşamada talep öngörülebilir, margin düşük, fiyat belirleyici olur.</li>
+<li><b>5 lever (belirsizlikle başa çıkma):</b> capacity, inventory, time, information, price.</li>
+<li><b>Strategic scope:</b> Fit'in kapsamı firmadaki fonksiyonları ve zincirdeki diğer aşamaları da içermelidir. Dar scope, local optimizasyona ve çatışmaya yol açar.</li>
+</ul>
+</div>
+</section>
+
+<!-- ================= Ch3 ================= -->
+<section class="sec" id="ch3" style="--hue:var(--c3)">
+<div class="sec-head"><span class="tag">Ch3</span><h2>Supply Chain Drivers &amp; Metrics</h2></div>
+
+<div class="card hl">
+<p><b>Çerçeve:</b> Competitive strategy → supply chain strategy → structure (efficiency ↔ responsiveness) → <b>6 driver</b>:</p>
+<ul>
+<li><b>Logistical:</b> Facilities, Inventory, Transportation</li>
+<li><b>Cross-functional:</b> Information, Sourcing, Pricing</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>1. Facilities</h3>
+<ul>
+<li>Rol: Responsiveness, facility sayısı, esnekliği veya kapasitesi artınca artar.</li>
+<li>Bileşenler: <b>capability</b> (flexible/dedicated, product/functional focus), <b>location</b> (merkezileş → ölçek ekonomisi, dağıt → responsiveness), <b>capacity</b> (fazla kapasite = responsive ama pahalı), <b>demand allocation</b>.</li>
+<li>Metrikler: revenue per $ invested, processing cost/unit, <b>OEE</b>, top %20 SKU ve müşterilerin hacim katkısı.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>2. Inventory</h3>
+<ul>
+<li>Bileşenler: <b>cycle</b> (lot size kararı), <b>safety</b> (talep beklenenden fazla olursa), <b>seasonal</b> (öngörülebilir talep dalgalanması), <b>level of product availability</b> (OTIF).</li>
+<li><b>Little's Law: I = D × T</b> (inventory = throughput × flow time).</li>
+<li>Stok artınca responsiveness ve ölçek ekonomisi artar ama holding cost de artar.</li>
+<li>Metrikler: <b>DSI, inventory turns, fill rate</b>, belirli günden fazla stoku olan ürünler.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>3. Transportation</h3>
+<ul>
+<li>Network tasarımı (direkt mi, consolidation noktalı mı) ve mod seçimi (air, truck, rail, sea, pipeline, internet).</li>
+<li>Hızlı taşıma pahalıdır ama responsiveness sağlar.</li>
+<li>Metrikler: inbound/outbound transport cost/unit ve transit time. Outbound cost genelde daha yüksektir çünkü inbound lotlar daha büyüktür.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>4. Information</h3>
+<ul>
+<li>Bileşenler: demand planning, coordination &amp; information sharing, <b>S&amp;OP</b>.</li>
+<li>Daha fazla bilgi, altyapı/analiz maliyetini ve karmaşıklığı hızla artırır, marjinal değeri azalır. Koordinasyon için gereken <b>minimum</b> bilgi paylaşılmalıdır.</li>
+<li>Örnek: 7-Eleven Japan, Walmart. Metrikler: forecast error, variance from plan.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>5. Sourcing</h3>
+<ul>
+<li>In-house mu outsource mu (supply chain surplus'ı artırıyorsa outsource), supplier selection, procurement (hedef: total cost of ownership'i düşürmek).</li>
+<li>Metrikler: <b>days payable outstanding</b>, average purchase price, supply quality, lead time, supplier reliability.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>6. Pricing</h3>
+<ul>
+<li>Quantity discounts, <b>EDLP vs High-Low</b>, promosyon zamanlaması, fixed price vs menu pricing.</li>
+<li>Metrikler: profit margin, average sale price.</li>
+</ul>
+</div>
+
+<div class="card hl">
+<h3>Facility sayısı trade-off'u</h3>
+<ul>
+<li>Facility sayısı arttıkça facility cost ve inventory cost artar.</li>
+<li>Transportation cost önce düşer, sonra tekrar yükselir (U şekli).</li>
+<li>Response time düşer (iyileşir).</li>
+<li><b>Total logistics cost</b> U şeklindedir. Firma en az, toplam maliyeti minimize eden facility sayısına sahip olmalıdır. Daha fazlasını sadece gelir artışı maliyet artışını aşacaksa açar.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Finansal ölçütler (Costco vs Nordstrom)</h3>
+<ul>
+<li><b>ROE</b> = Net Income / Avg Shareholder Equity (Costco %25,11 vs Nordstrom %15,80).</li>
+<li><b>ROA</b> = EBIT / Avg Total Assets = <b>Profit Margin × Asset Turnover</b> (Costco %8,69 vs Nordstrom %2,56).</li>
+<li>Profit margin: %2,48 vs %1,47. Asset turnover: 3,51 vs 1,74.</li>
+<li>ART = Sales / Receivables; INVT = COGS / Inventory (12,77 vs 4,93); APT = COGS / Payables.</li>
+<li>Finansal tablolarda görünmeyen ölçüler: <b>markdowns</b> ve <b>lost sales</b>.</li>
+<li>Costco her iki bileşende de üstün, yani hızlı dönen stok ve varlık verimliliği.</li>
+</ul>
+</div>
+</section>
+
+<!-- ================= Ch4 ================= -->
+<section class="sec" id="ch4" style="--hue:var(--c4)">
+<div class="sec-head"><span class="tag">Ch4</span><h2>Distribution Network Design</h2></div>
+
+<div class="card hl">
+<p><b>Distribution:</b> Ürünü tedarikçi aşamasından müşteri aşamasına taşıma ve depolama adımlarıdır. Network iki eksende değerlendirilir: <b>müşteriye sunulan değer</b> ve <b>maliyet</b>.</p>
+</div>
+
+<div class="card">
+<p><b>7 müşteri servis boyutu:</b> response time, product variety, product availability, customer experience, time to market, order visibility, returnability.</p>
+<p><b>4 maliyet kalemi:</b> inventory, transportation, facilities &amp; handling, information.</p>
+</div>
+
+<div class="card">
+<p><b>İki temel karar:</b> Teslimat mı (delivery) yoksa müşteri alımı mı (pickup)? Ürün bir aracı (intermediary) üzerinden mi akacak?</p>
+</div>
+
+<div class="card">
+<h3>6 tasarım</h3>
+<div class="tw"><table style="min-width:900px">
+<thead><tr><th>Tasarım</th><th>Inventory</th><th>Transport</th><th>Response</th><th>Variety / Availability</th><th>Öne çıkanlar</th></tr></thead>
+<tbody>
+<tr><td>1. Manufacturer storage + direct shipping (drop-ship)</td><td>En düşük (aggregation)</td><td>Yüksek</td><td>Uzun (1–2 hafta)</td><td>Çok yüksek</td><td>Time-to-market en hızlı; low-demand, high-value ürünlerde ideal; info yatırımı yüksek; partial shipment sorunu; returns zor</td></tr>
+<tr><td>2. + in-transit merge</td><td>Benzer</td><td>Drop-ship'ten biraz düşük</td><td>Benzer</td><td>Benzer</td><td>Carrier birleştirir, <b>tek teslimat</b>, daha iyi customer experience; info yatırımı daha yüksek (Dell–DHL Amsterdam Hub)</td></tr>
+<tr><td>3. Distributor storage + carrier delivery</td><td>Daha yüksek</td><td>Daha düşük</td><td>Daha hızlı</td><td>Daha düşük</td><td>Customer experience, visibility ve returns daha kolay</td></tr>
+<tr><td>4. Distributor storage + last-mile</td><td>Daha yüksek</td><td><b>En yüksek</b> (ölçek yok)</td><td>Aynı gün/ertesi gün</td><td>Orta</td><td>Hacimli ürünlerde çok iyi deneyim (Amazon same-day, grocery)</td></tr>
+<tr><td>5. Manufacturer/distributor storage + customer pickup</td><td>Değişken</td><td>Paket carrier'dan düşük</td><td>Benzer</td><td>Benzer</td><td>Home delivery yok → customer experience düşük; altyapı/info yatırımı yüksek</td></tr>
+<tr><td>6. Retail storage + customer pickup</td><td><b>En yüksek</b></td><td><b>En düşük</b></td><td>Anında</td><td><b>En düşük</b> variety; availability en pahalı</td><td>Returns en kolay; time to market en yavaş</td></tr>
+</tbody></table></div>
+</div>
+
+<div class="card">
+<h3>Omni-channel (2×2: Information × Product)</h3>
+<ul>
+<li><b>Traditional retail:</b> Yüz yüze bilgi + ürünü hemen al. Çok facility, yüksek stok, düşük transport.</li>
+<li><b>Showroom:</b> Yüz yüze bilgi + sonra teslimat/pickup. Düşük stok, küçük facility, daha fazla transport ve info altyapısı.</li>
+<li><b>Online + home delivery:</b> Stoklar toplanır, az lokasyon, yüksek transport maliyeti.</li>
+<li><b>Online + pickup:</b> Outbound transport düşer, müşteri pickup noktasına gider.</li>
+<li>Kanal performansı: Fiziksel ürünü almak daha hızlıdır. Remote kanalda variety kolay sağlanır. Stok toplamak availability'yi artırır. Order visibility online/showroom'da kritiktir, retailde otomatiktir. Returns fiziksel lokasyonda kolaydır, remote bilgi alışverişinde iade oranı yüksektir.</li>
+</ul>
+</div>
+</section>
+
+<!-- ================= Ch5 ================= -->
+<section class="sec" id="ch5" style="--hue:var(--c5)">
+<div class="sec-head"><span class="tag">Ch5</span><h2>Network Design in the Supply Chain</h2></div>
+
+<div class="card hl">
+<p><b>Network design kararları:</b> Kaç plant/DC/cross-dock olacak, nerede, kapasiteleri ne olacak, hangi ürünler ve hangi pazarlar? Pazar değişimi, birleşme (merger) veya faktör maliyeti değişince yeniden gözden geçirilir.</p>
+</div>
+
+<div class="card">
+<h3>Etkileyen faktörler</h3>
+<ul>
+<li>Strategic, competitive (<b>positive externalities</b>, <b>locating to split the market</b>), political, infrastructure.</li>
+<li>Customer response time ve service level, total logistics cost.</li>
+<li>Macroeconomic: tariffs &amp; tax incentives, exchange-rate ve demand risk.</li>
+</ul>
+</div>
+
+<div class="card">
+<p><b>Hotelling (iki firma bir çizgide):</b> İki rakip pazar payını maksimize etmek için <b>merkeze, birbirine yakın</b> konumlanır (formüller: d₁ = a + (1−b−a)/2, d₂ = (1+b−a)/2). Bu müşteriler için toplam seyahat açısından optimum değildir.</p>
+</div>
+
+<div class="card">
+<h3>Çerçeve (4 faz)</h3>
+<ul>
+<li><b>Phase I:</b> Supply chain strategy (competitive strategy, internal constraints, global competition)</li>
+<li><b>Phase II:</b> Regional facility configuration (talep tahmini, fixed/variable cost, economies of scale/scope, tariffs, tax incentives, competitors, demand/exchange-rate/political risk)</li>
+<li><b>Phase III:</b> Desirable sites (hard ve soft infrastructure)</li>
+<li><b>Phase IV:</b> Location choices ve market allocation (factor costs, logistics costs)</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Modeller</h3>
+<p><b>1. Capacitated plant location model</b> (MIP, Solver ile)</p>
+<ul>
+<li>Min Σ fᵢyᵢ + ΣΣ cᵢⱼxᵢⱼ</li>
+<li>Kısıtlar: Σᵢ xᵢⱼ = Dⱼ (talep karşılanır), <b>Σⱼ xᵢⱼ ≤ Kᵢyᵢ</b> (kapalı plant'tan sevkiyat yok), yᵢ ∈ {0,1}, xᵢⱼ ≥ 0.</li>
+<li><b>SunOil sonucu:</b> S. America, Asia ve Africa'da plant açık (hepsi high-capacity 20), Africa'da 3M excess capacity, toplam maliyet <b>$23,751K</b>.</li>
+<li><b>Vergi/tarife/profit versiyonu:</b> Amaç Max (gelir − sabit − değişken maliyet) olur ve talep kısıtı <b>Σᵢ xᵢⱼ ≤ Dⱼ</b>'ye dönüşür, yani kârsız pazarlar karşılanmayabilir.</li>
+</ul>
+<p><b>2. Gravity location model:</b> Potansiyel site bulmak için kullanılır. dₙ = √((x−xₙ)²+(y−yₙ)²), <b>TC = Σ dₙDₙFₙ</b> minimize edilir. İteratif ağırlıklı ortalama formülü (x' = Σ(DₙFₙxₙ/dₙ) / Σ(DₙFₙ/dₙ)) yeni konum bulur, konum değişmeyince durur. Örnek: Steel appliances.</p>
+<p><b>3. Demand allocation (mevcut facility'ler):</b> TelecomOne ve HighOptic ayrı çözüldü. Birleşince (TelecomOptic) capacitated plant location ile çözülür. <b>Optimal maliyet $47,401, açık olanlar Baltimore, Cheyenne, Memphis</b>, Baltimore'da 8 excess capacity.</p>
+<p><b>4. Single sourcing versiyonu:</b> xᵢⱼ binary, her pazar tek plant'tan beslenir, amaç Σ Dⱼcᵢⱼxᵢⱼ. Sonuç değişir: <b>Salt Lake, Memphis, Wichita açık</b>, Baltimore ve Cheyenne kapalı.</p>
+<p><b>5. Plants + Warehouses simultaneously:</b> 4 aşama (suppliers → plants → warehouses → markets). Binary: plant (yᵢ) ve warehouse (yₑ) lokasyonları; akışlar (xₕᵢ, xᵢₑ, xₑⱼ) sürekli. Amaç: Σ Fᵢyᵢ + Σ fₑyₑ + tüm akış maliyetleri.</p>
+</div>
+</section>
+
+<!-- ================= Ch6 ================= -->
+<section class="sec" id="ch6" style="--hue:var(--c6)">
+<div class="sec-head"><span class="tag">Ch6</span><h2>Designing Global Supply Chain Networks</h2></div>
+
+<div class="card hl">
+<p><b>Globalization:</b> Gelir artırma ve maliyet düşürme fırsatı sunar ama risk/belirsizlik de getirir. Başarı ile başarısızlık arasındaki fark çoğu zaman uygun <b>risk mitigation</b>'ın tasarıma eklenmesidir. Talep ve fiyat belirsizliği <b>esnek kapasitenin</b> değerini artırır.</p>
+</div>
+
+<div class="card">
+<p><b>Accenture risk anketi (etkilenen zincir %):</b> Performance of supply chain partners <b>38</b>, fuel price volatility <b>37</b>, natural disasters 35, logistics capacity/complexity 33, forecasting/planning accuracy 30, currency fluctuation 29, supplier planning 27, shortage of skilled resources 24, port/customs delays 23, customer preference shifts 23, inflexible technology 21, geopolitical 20, terrorist infiltration 13.</p>
+</div>
+
+<div class="card">
+<h3>Offshoring ve total cost</h3>
+<ul>
+<li>Offshoring <b>iki nedenle başarısız olur:</b> (1) sadece unit cost'a odaklanmak, total cost'u görmemek, (2) kritik risk faktörlerini yok saymak.</li>
+<li>Etkiler: Labor/fixed cost düşer, ama freight artar, lead time ve belirsizliği artar (forecast bozulur, stok artar), visibility düşer, kalite zayıflayabilir, return artar, working capital ve hidden cost artar, minimum order quantity büyür. Taxes/tariffs ve raw material cost her iki yönde de olabilir.</li>
+<li>Total cost elemanları: supplier price, terms, delivery, inventory &amp; warehousing, cost of quality, duties/VAT/tax incentives, cost of risk/staff/broker/tooling, exchange rate trendleri.</li>
+</ul>
+</div>
+
+<div class="card">
+<p><b>Discounted Cash Flow (DCF):</b> Bir dolar bugün yarın bir dolardan değerlidir. NPV = C₀ + Σ Cₜ/(1+k)ᵗ. En yüksek NPV'li seçenek en iyi finansal getiriyi sağlar.</p>
+</div>
+
+<div class="card">
+<h3>Trips Logistics örneği (depo kararı)</h3>
+<p>Talep 100.000 birim, 1.000 birime 1.000 sq ft, gelir $1,22/birim, k = 0,1. Lease $1/sq ft, spot $1,20/sq ft.</p>
+<ul>
+<li>Belirsizlik yokken: spot NPV = <b>$5.471</b>, 3 yıllık lease NPV = <b>$60.182</b> (lease $54.711 daha iyi).</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Decision tree metodolojisi</h3>
+<ol style="margin:0 0 8px;padding-left:1.4rem">
+<li>Dönem uzunluğu ve sayısı (T) belirle</li>
+<li>Dalgalanacak faktörleri belirle</li>
+<li>Belirsizliği temsil et</li>
+<li>Dönemsel iskonto oranı k</li>
+<li>Ağacı çiz (durumlar + geçiş olasılıkları)</li>
+<li><b>T'den başlayıp geriye (Period 0'a) doğru</b> optimal karar ve beklenen nakit akışlarını hesapla</li>
+</ol>
+</div>
+
+<div class="card">
+<p><b>Trips'te ağaç:</b> Talep ±%20, spot fiyat ±%10, her biri p = 0,5 (her düğüm 0,25 olasılık). 3 seçenek: sadece spot, sabit 3 yıllık lease (+ek ihtiyaç spot'tan), esnek lease (minimum ücret + üst limite kadar değişken kullanım).</p>
+<ul>
+<li><b>Spot NPV = $5.471</b> (belirsizlikle aynı, çünkü kâr talep ve fiyata göre doğrusal ve dalgalanmalar simetrik).</li>
+<li><b>Sabit lease NPV = $38.364</b> (belirsiz olmayan $60.182'den düşük, çünkü talep düşünce sabit lease maliyeti devam eder ve zarar yazar, örn. D=64'te −$21.920).</li>
+<li>Yine de lease beklenen kâr olarak daha iyi olduğu için tercih edilir.</li>
+</ul>
+</div>
+</section>
+
+<!-- ================= Ch10 ================= -->
+<section class="sec" id="ch10" style="--hue:var(--c7)">
+<div class="sec-head"><span class="tag">Ch10</span><h2>Coordination in a Supply Chain</h2></div>
+
+<div class="card hl">
+<p><b>Koordinasyon:</b> Tüm aşamaların birbiriyle uyumlu hareket edip toplam supply chain surplus'ını artırmasıdır. Aşamaların birbirinin etkisini hesaba katması ve bilgi paylaşması gerekir. <b>Koordinasyon eksikliği</b> (a) aşamaların hedefleri çatıştığında, (b) aşamalar arası bilgi gecikip bozulduğunda oluşur.</p>
+</div>
+
+<div class="card">
+<p><b>Bullwhip effect:</b> Sipariş dalgalanması perakendeciden toptancıya, üreticiye, tedarikçiye doğru çıkarken büyür. Talep bilgisi bozulur ve bu koordinasyon kaybının sonucudur.</p>
+<p><b>Performans etkisi:</b> Manufacturing, inventory, replenishment lead time, transportation ve shipping/receiving labor maliyeti <b>artar</b>. Product availability ve profitability <b>düşer</b>.</p>
+</div>
+
+<div class="card">
+<h3>5 engel (obstacle)</h3>
+<div class="tw"><table style="min-width:480px">
+<thead><tr><th>Engel</th><th>Örnekler</th></tr></thead>
+<tbody>
+<tr><td>Incentive</td><td>Fonksiyon/aşama bazlı local optimizasyon, sales force incentives (sell-in bazlı)</td></tr>
+<tr><td>Information processing</td><td>Siparişe bakarak tahmin yapmak (müşteri talebine değil), bilgi paylaşmamak</td></tr>
+<tr><td>Operational</td><td>Büyük lotlarla sipariş, uzun replenishment lead time, rationing ve shortage gaming</td></tr>
+<tr><td>Pricing</td><td>Lot-size bazlı indirimler, fiyat dalgalanmaları (forward buying; çorba örneği)</td></tr>
+<tr><td>Behavioral</td><td>Aşamalar yerel bakar, kök neden aramaz, birbirini suçlar, öğrenmez, güvensizlik/oportünizm</td></tr>
+</tbody></table></div>
+</div>
+
+<div class="card">
+<h3>5 yönetsel lever</h3>
+<ol style="margin:0 0 8px;padding-left:1.4rem">
+<li><b>Aligning goals &amp; incentives</b> (sales force'u sell-in'den <b>sell-through</b>'a çevir)</li>
+<li><b>Improving information visibility/accuracy</b> (demand data paylaş, collaborative forecasting, <b>CRP</b>, <b>VMI</b>)</li>
+<li><b>Improving operations</b> (lead time ve lot size düşür, geçmiş satışa göre rationing)</li>
+<li><b>Pricing strategies</b> (lot-size'dan volume-based discount'a geç, fiyatı stabilize et)</li>
+<li><b>Strategic partnerships &amp; trust</b></li>
+</ol>
+</div>
+
+<div class="card">
+<h3>Pratik yaklaşımlar</h3>
+<ul>
+<li><b>CRP:</b> Wholesaler/manufacturer POS verisine göre yeniden doldurur.</li>
+<li><b>VMI:</b> Manufacturer/supplier stokla ilgili tüm kararlardan sorumludur.</li>
+<li><b>CPFR:</b> Strateji/planlama, demand-supply management, execution ve analysis'te iş birliği. 4 senaryo:
+<ul>
+<li><b>Retail event collaboration</b> (yoğun promosyonlu kategoriler)</li>
+<li><b>DC replenishment collaboration</b> (drugstore, hardware, grocery)</li>
+<li><b>Store replenishment collaboration</b> (mass merchants, club stores)</li>
+<li><b>Collaborative assortment planning</b> (apparel, seasonal goods, department stores)</li>
+</ul></li>
+<li>Uygulamada: top management commitment, kaynak ayır, diğer aşamalarla iletişime odaklan.</li>
+</ul>
+</div>
+</section>
+
+<!-- ================= Son dakika ================= -->
+<section class="sec" id="tuzak" style="--hue:var(--c8)">
+<div class="sec-head"><span class="tag">Son dakika</span><h2>tuzaklar ve ezber listesi</h2></div>
+<div class="card hl">
+<ul>
+<li><b>Information, Sourcing, Pricing = cross-functional</b>; Facilities, Inventory, Transportation = logistical.</li>
+<li><b>Little's Law:</b> I = D·T</li>
+<li><b>ROA = Profit Margin × Asset Turnover</b></li>
+<li>Direct shipping: <b>en düşük inventory</b>, response uzun (1–2 hafta), time-to-market en hızlı. Retail pickup: <b>en yüksek inventory, en düşük transport</b>, time-to-market en yavaş, returns en kolay. Last-mile: <b>en yüksek transport</b>.</li>
+<li>Plant location'da kapasite kısıtı: <b>Σⱼ xᵢⱼ ≤ Kᵢyᵢ</b>. Profit modelinde talep kısıtı <b>≤ Dⱼ</b>.</li>
+<li>Gravity model = <b>potansiyel site</b> bulur. Single sourcing sonucu multi-sourcing'den farklıdır.</li>
+<li>Decision tree <b>geriye doğru</b> çözülür. Trips: spot $5.471, lease $60.182 (belirsizsiz) → $38.364 (belirsizli).</li>
+<li>Bullwhip engelleri: Incentive, Information processing, Operational, Pricing, Behavioral.</li>
+<li>Slayt hataları: Ch5 ilk modelde "= Kᵢyᵢ" yazıyor, doğrusu "≤". Costco inventory 16.651 (tabloda), INVT hesabında 16.851 yazılmış, 12,77 sonucu 16.651 ile tutuyor.</li>
+</ul>
+</div>
+</section>
+
+<h2 style="font-family:var(--font-display);font-size:2.4rem;margin:56px 0 0;font-weight:700">BÖLÜM 2: DENEME SINAVI A (20 soru)</h2>
+
+<section class="sec" id="denemea" style="--hue:var(--c9)">
+<div class="sec-head"><span class="tag">Deneme A</span><h2>20 soru</h2></div>
+<div class="qs">
+
+<article class="q"><div class="qn">1</div><div class="qb">
+<p class="qt">A customer buys a humidifier for $60. According to the course, supply chain profitability is:</p>
+<ul class="opts">
+<li><i>A)</i> The retailer's profit on the $60 sale</li>
+<li><i>B)</i> Customer value minus the price paid by the customer</li>
+<li><i>C)</i> The difference between the $60 revenue and the total of all costs incurred across the supply chain, shared among all stages</li>
+<li><i>D)</i> The manufacturer's profit, since it creates the product</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> Supply chain surplus = customer value − supply chain cost. Başarı tek bir aşamanın kârıyla değil toplam zincir kârıyla ölçülür. B şıkkı müşteri açısından bir kavramdır.</div>
+</div></article>
+
+<article class="q"><div class="qn">2</div><div class="qb">
+<p class="qt">In the Ethan Allen customized furniture supply chain, which processes are push?</p>
+<ul class="opts">
+<li><i>A)</i> All processes</li>
+<li><i>B)</i> Only the procurement cycle</li>
+<li><i>C)</i> Procurement and manufacturing cycles</li>
+<li><i>D)</i> None; all processes are pull</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> Mobilya siparişe özel üretildiği için manufacturing müşteri siparişinden sonra başlar. C şıkkı L.L. Bean'e daha yakındır (orada manufacturing ve replenishment de push).</div>
+</div></article>
+
+<article class="q"><div class="qn">3</div><div class="qb">
+<p class="qt">Which of the following is NOT a CRM process?</p>
+<ul class="opts">
+<li><i>A)</i> Market</li>
+<li><i>B)</i> Sell</li>
+<li><i>C)</i> Order management</li>
+<li><i>D)</i> Supply planning</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> Supply planning ISCM'e aittir. CRM: market, price, sell, call center, order management.</div>
+</div></article>
+
+<article class="q"><div class="qn">4</div><div class="qb">
+<p class="qt">Which change would DECREASE implied demand uncertainty?</p>
+<ul class="opts">
+<li><i>A)</i> Customers become willing to tolerate longer response times</li>
+<li><i>B)</i> The range of required quantity widens</li>
+<li><i>C)</i> The required service level increases</li>
+<li><i>D)</i> The rate of innovation in the product increases</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> Daha uzun bekleme toleransı tepki için zaman tanır, belirsizliği azaltır. Diğer üçü ve variety artışı belirsizliği artırır.</div>
+</div></article>
+
+<article class="q"><div class="qn">5</div><div class="qb">
+<p class="qt">A firm sells a commodity with highly predictable demand (like salt) through a very responsive chain with large excess capacity and buffer inventory. In terms of strategic fit, this firm is:</p>
+<ul class="opts">
+<li><i>A)</i> In the zone of fit, because responsiveness is always valuable</li>
+<li><i>B)</i> Outside the zone, because responsiveness is too low</li>
+<li><i>C)</i> Outside the zone, because responsiveness exceeds what the low uncertainty requires, creating unnecessary cost</li>
+<li><i>D)</i> In the zone, because margins are high</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> Düşük belirsizlik efficient (düşük maliyetli) zincir ister. Fazla responsiveness gereksiz maliyettir ve zone of strategic fit'in dışına düşer.</div>
+</div></article>
+
+<article class="q"><div class="qn">6</div><div class="qb">
+<p class="qt">A retailer sells 200 units per day and each unit spends on average 15 days in its supply chain. Average inventory is:</p>
+<ul class="opts">
+<li><i>A)</i> 13.3 units</li>
+<li><i>B)</i> 215 units</li>
+<li><i>C)</i> 1,500 units</li>
+<li><i>D)</i> 3,000 units</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> Little's Law: I = D × T = 200 × 15 = 3,000. 13,3 yanlışlıkla D/T alınırsa çıkar.</div>
+</div></article>
+
+<article class="q"><div class="qn">7</div><div class="qb">
+<p class="qt">Which statement about the number of facilities is correct?</p>
+<ul class="opts">
+<li><i>A)</i> Total logistics cost is U-shaped; a firm should have at least the number of facilities that minimizes it and go beyond that only if extra revenue exceeds extra cost</li>
+<li><i>B)</i> Adding facilities always lowers total logistics cost because transportation costs fall</li>
+<li><i>C)</i> Inventory costs fall as facilities increase because of aggregation</li>
+<li><i>D)</i> Response time gets longer as the number of facilities increases</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> Facility sayısı arttıkça facility ve inventory maliyeti artar (aggregation kaybı), transport önce düşer sonra yükselir, response time iyileşir.</div>
+</div></article>
+
+<article class="q"><div class="qn">8</div><div class="qb">
+<p class="qt">Which driver–metric pairing is INCORRECT?</p>
+<ul class="opts">
+<li><i>A)</i> Facilities: overall equipment effectiveness</li>
+<li><i>B)</i> Transportation: days payable outstanding</li>
+<li><i>C)</i> Information: forecast error</li>
+<li><i>D)</i> Inventory: fill rate</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> Days payable outstanding <b>Sourcing</b> metriğidir. Transportation'da inbound/outbound cost per unit ve transit time kullanılır.</div>
+</div></article>
+
+<article class="q"><div class="qn">9</div><div class="qb">
+<p class="qt">Costco has profit margin 2.48%, asset turnover 3.51 and inventory turnover 12.77; Nordstrom has 1.47%, 1.74 and 4.93. Which conclusion is best supported?</p>
+<ul class="opts">
+<li><i>A)</i> Nordstrom's ROA is higher because of higher margins</li>
+<li><i>B)</i> Costco's ROA advantage comes only from its higher margin</li>
+<li><i>C)</i> Costco's ROA (≈8.7%) exceeds Nordstrom's (≈2.6%) because it is better on both profit margin and asset turnover</li>
+<li><i>D)</i> ROA depends only on profit margin, not on asset turnover</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> ROA = margin × asset turnover: 2,48 × 3,51 ≈ 8,7% ve 1,47 × 1,74 ≈ 2,6%.</div>
+</div></article>
+
+<article class="q"><div class="qn">10</div><div class="qb">
+<p class="qt">Which distribution network has the highest transportation cost because it enjoys minimal economies of scale?</p>
+<ul class="opts">
+<li><i>A)</i> Manufacturer storage with direct shipping</li>
+<li><i>B)</i> Distributor storage with last-mile delivery</li>
+<li><i>C)</i> Retail storage with customer pickup</li>
+<li><i>D)</i> Distributor storage with carrier delivery</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> Slayta göre last-mile transport maliyeti diğer tüm seçeneklerden yüksektir. Retail pickup ise transport'ta en düşüktür.</div>
+</div></article>
+
+<article class="q"><div class="qn">11</div><div class="qb">
+<p class="qt">Which statement about manufacturer storage with direct shipping is FALSE?</p>
+<ul class="opts">
+<li><i>A)</i> Inventory costs are low because of aggregation at the manufacturer</li>
+<li><i>B)</i> It is easy to offer high variety and high product availability</li>
+<li><i>C)</i> It requires significant investment in information infrastructure</li>
+<li><i>D)</i> Response time is very short, typically same-day</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> Response time 1–2 hafta kadar uzundur (mesafe + iki aşamalı sipariş işleme).</div>
+</div></article>
+
+<article class="q"><div class="qn">12</div><div class="qb">
+<p class="qt">In omni-channel retailing, which describes the showroom model?</p>
+<ul class="opts">
+<li><i>A)</i> Face-to-face information, product delivered or picked up later; low inventory and small facilities but more transportation/information infrastructure than traditional retail</li>
+<li><i>B)</i> Remote information and home delivery; inventory aggregated in few locations</li>
+<li><i>C)</i> Face-to-face information with immediate pickup from large local inventories</li>
+<li><i>D)</i> Remote information with customer pickup, which lowers outbound transportation cost</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> B = online + home delivery, C = traditional retail, D = online + pickup.</div>
+</div></article>
+
+<article class="q"><div class="qn">13</div><div class="qb">
+<p class="qt">Two firms compete on a line and customers go to the nearest firm. To capture the largest market share, the firms tend to locate:</p>
+<ul class="opts">
+<li><i>A)</i> At 1/4 and 3/4 of the line</li>
+<li><i>B)</i> At the two extremes of the line</li>
+<li><i>C)</i> Close together near the center</li>
+<li><i>D)</i> At the largest-tariff market</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> Hotelling mantığı: Her firma rakibe yaklaşıp pazarı bölmeye çalışır, sonuç merkezde yığılmadır (müşteri seyahati açısından optimal değildir).</div>
+</div></article>
+
+<article class="q"><div class="qn">14</div><div class="qb">
+<p class="qt">Identifying regional tariffs, local production requirements, tax incentives, competitors, and demand/exchange-rate risk belongs to which phase of the network design framework?</p>
+<ul class="opts">
+<li><i>A)</i> Phase I: supply chain strategy</li>
+<li><i>B)</i> Phase II: regional facility configuration</li>
+<li><i>C)</i> Phase III: desirable sites</li>
+<li><i>D)</i> Phase IV: location choices</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> Phase III hard/soft infrastructure, Phase IV factor/logistics cost ile kesin yer seçimidir.</div>
+</div></article>
+
+<article class="q"><div class="qn">15</div><div class="qb">
+<p class="qt">In the capacitated plant location model, which constraint prevents shipping from a closed plant?</p>
+<ul class="opts">
+<li><i>A)</i> Σᵢ xᵢⱼ = Dⱼ</li>
+<li><i>B)</i> yᵢ ∈ {0,1}</li>
+<li><i>C)</i> xᵢⱼ ≥ 0</li>
+<li><i>D)</i> Σⱼ xᵢⱼ ≤ Kᵢyᵢ</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> yᵢ = 0 ise sağ taraf 0 olur ve tüm xᵢⱼ = 0 zorlanır; yᵢ = 1 ise kapasite Kᵢ ile sınırlıdır.</div>
+</div></article>
+
+<article class="q"><div class="qn">16</div><div class="qb">
+<p class="qt">Which statement about gravity location models is correct?</p>
+<ul class="opts">
+<li><i>A)</i> They identify potential sites by minimizing total transportation cost Σ dₙDₙFₙ based on distances to sources and markets</li>
+<li><i>B)</i> They choose among given sites using binary variables and fixed costs</li>
+<li><i>C)</i> They maximize after-tax profit considering tariffs and exchange rates</li>
+<li><i>D)</i> They allocate demand among existing plants subject to capacity</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> Gravity model potansiyel site bulur, kesin lokasyon/kapasite seçimi plant location modelleriyle yapılır.</div>
+</div></article>
+
+<article class="q"><div class="qn">17</div><div class="qb">
+<p class="qt">According to the course, offshoring often fails mainly because firms:</p>
+<ul class="opts">
+<li><i>A)</i> Underestimate labor cost savings and port capacity</li>
+<li><i>B)</i> Focus on unit cost rather than total cost and ignore critical risk factors</li>
+<li><i>C)</i> Focus on exchange rates and tariffs only</li>
+<li><i>D)</i> Lack top management commitment and information technology</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> Slayttaki iki neden bunlardır.</div>
+</div></article>
+
+<article class="q"><div class="qn">18</div><div class="qb">
+<p class="qt">In Trips Logistics, the 3-year lease NPV falls from $60,182 (no uncertainty) to $38,364 (decision tree), while the spot market NPV stays $5,471. Best explanation?</p>
+<ul class="opts">
+<li><i>A)</i> Spot prices become less uncertain with the tree</li>
+<li><i>B)</i> The discount rate is higher in the tree</li>
+<li><i>C)</i> The lease cost is fixed even when demand falls (losses when D = 64), whereas the spot option's expected profit is unchanged because expected demand and price stay the same</li>
+<li><i>D)</i> The lease price is itself uncertain</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> Kiralanan 100.000 sq ft talep düşse de ödenir. Spot maliyeti ise talebe göre ayarlanır ve beklenen talep/fiyat sabit kaldığı için NPV aynıdır. Yine de lease'in beklenen değeri daha yüksektir.</div>
+</div></article>
+
+<article class="q"><div class="qn">19</div><div class="qb">
+<p class="qt">A manufacturer's periodic price promotions cause retailers to forward-buy so that manufacturer shipments fluctuate far more than retail sales (soup example). This is a(n):</p>
+<ul class="opts">
+<li><i>A)</i> Pricing obstacle to coordination</li>
+<li><i>B)</i> Incentive obstacle</li>
+<li><i>C)</i> Information processing obstacle</li>
+<li><i>D)</i> Behavioral obstacle</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> Fiyat dalgalanmaları ve lot bazlı indirimler pricing obstacle'dır. Çözüm: fiyatı stabilize etmek ve volume-based discount.</div>
+</div></article>
+
+<article class="q"><div class="qn">20</div><div class="qb">
+<p class="qt">Which statement correctly distinguishes CRP from VMI?</p>
+<ul class="opts">
+<li><i>A)</i> In CRP the supplier decides inventory; in VMI the retailer decides</li>
+<li><i>B)</i> CRP and VMI are the same as CPFR</li>
+<li><i>C)</i> VMI replenishes based on POS data; in CRP the manufacturer decides all inventory</li>
+<li><i>D)</i> In CRP the wholesaler/manufacturer replenishes based on POS data; in VMI the manufacturer/supplier is responsible for all inventory decisions</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> A ve C'de roller ters çevrilmiş. CPFR ise strateji, planlama, talep/arz yönetimi, execution ve analizde iş birliğidir.</div>
+</div></article>
+
+</div>
+</section>
+
+<h2 style="font-family:var(--font-display);font-size:2.4rem;margin:56px 0 0;font-weight:700">BÖLÜM 3: DENEME SINAVI B (20 soru)</h2>
+
+<section class="sec" id="denemeb" style="--hue:var(--c10)">
+<div class="sec-head"><span class="tag">Deneme B</span><h2>20 soru</h2></div>
+<div class="qs">
+
+<article class="q"><div class="qn">1</div><div class="qb">
+<p class="qt">In the cycle view of the supply chain, the manufacturing cycle occurs at the interface between:</p>
+<ul class="opts">
+<li><i>A)</i> Customer and retailer</li>
+<li><i>B)</i> Distributor and manufacturer</li>
+<li><i>C)</i> Manufacturer and supplier</li>
+<li><i>D)</i> Retailer and distributor</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> Customer order (customer–retailer), replenishment (retailer–distributor), manufacturing (distributor–manufacturer), procurement (manufacturer–supplier).</div>
+</div></article>
+
+<article class="q"><div class="qn">2</div><div class="qb">
+<p class="qt">Which statement about the three flows is correct?</p>
+<ul class="opts">
+<li><i>A)</i> Funds flow in both directions; information flows only to the supplier</li>
+<li><i>B)</i> Product flows only from supplier to customer; reverse flows are outside the supply chain</li>
+<li><i>C)</i> The customer is outside the supply chain</li>
+<li><i>D)</i> Information and product flow in both directions, while funds flow from the customer toward the supplier; the customer is the only source of revenue</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> Slayttaki oklar ve reverse flow (iade) mantığı bunu gösterir.</div>
+</div></article>
+
+<article class="q"><div class="qn">3</div><div class="qb">
+<p class="qt">Which of the following is NOT one of the five key levers to deal with supply chain uncertainty?</p>
+<ul class="opts">
+<li><i>A)</i> Sourcing</li>
+<li><i>B)</i> Capacity</li>
+<li><i>C)</i> Information</li>
+<li><i>D)</i> Price</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> 5 lever: capacity, inventory, time, information, price. Sourcing bir driver'dır ama lever listesinde yoktur.</div>
+</div></article>
+
+<article class="q"><div class="qn">4</div><div class="qb">
+<p class="qt">Which set of characteristics describes a RESPONSIVE supply chain?</p>
+<ul class="opts">
+<li><i>A)</i> Minimize product cost, low margins, minimize inventory</li>
+<li><i>B)</i> High utilization for low cost; suppliers selected on cost and quality</li>
+<li><i>C)</i> Modular design for postponement, flexible capacity, buffer inventory, aggressive lead-time reduction, suppliers selected on speed/flexibility/reliability/quality</li>
+<li><i>D)</i> Primary goal is lowest-cost supply, with higher margins</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> A, B ve D low-cost zincirin özellikleridir (D ayrıca margin açısından da hatalıdır).</div>
+</div></article>
+
+<article class="q"><div class="qn">5</div><div class="qb">
+<p class="qt">Which describes the beginning stages of a product life cycle?</p>
+<ul class="opts">
+<li><i>A)</i> Predictable demand and supply, low margins, price is the main purchase factor</li>
+<li><i>B)</i> Very uncertain demand, high margins, availability and speed crucial, cost secondary</li>
+<li><i>C)</i> Margins fall due to competitive pressure</li>
+<li><i>D)</i> Cost is primary and availability is secondary</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> A, C ve D olgunluk (later stages) aşamasını tarif eder.</div>
+</div></article>
+
+<article class="q"><div class="qn">6</div><div class="qb">
+<p class="qt">Which statement about the information driver is correct?</p>
+<ul class="opts">
+<li><i>A)</i> More information raises infrastructure/analysis cost and complexity while its marginal value diminishes; share the minimum information needed for coordination</li>
+<li><i>B)</i> More information is always better, so share everything</li>
+<li><i>C)</i> Information improves only efficiency, never responsiveness</li>
+<li><i>D)</i> Information is a logistical driver together with facilities, inventory, and transportation</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> Information cross-functional driver'dır ve hem efficiency hem responsiveness'ı iyileştirebilir.</div>
+</div></article>
+
+<article class="q"><div class="qn">7</div><div class="qb">
+<p class="qt">Inventory built up in advance to counter predictable variability in demand (e.g., holiday peaks) is called:</p>
+<ul class="opts">
+<li><i>A)</i> Cycle inventory</li>
+<li><i>B)</i> Safety inventory</li>
+<li><i>C)</i> Fill-rate inventory</li>
+<li><i>D)</i> Seasonal inventory</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> Cycle = sevkiyatlar arası talebi karşılayan (lot size), safety = beklenenden fazla talebe karşı, seasonal = öngörülebilir dalgalanmaya karşı.</div>
+</div></article>
+
+<article class="q"><div class="qn">8</div><div class="qb">
+<p class="qt">Time to market is fastest in which distribution network?</p>
+<ul class="opts">
+<li><i>A)</i> Retail storage with customer pickup</li>
+<li><i>B)</i> Distributor storage with carrier delivery</li>
+<li><i>C)</i> Manufacturer storage with direct shipping</li>
+<li><i>D)</i> Distributor storage with last-mile delivery</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> Ürün ilk birim üretilir üretilmez satılabilir. Retail storage en yavaştır.</div>
+</div></article>
+
+<article class="q"><div class="qn">9</div><div class="qb">
+<p class="qt">Compared with manufacturer storage with drop-shipping, distributor storage with package carrier delivery typically has:</p>
+<ul class="opts">
+<li><i>A)</i> Lower inventory cost, higher transportation cost, slower response</li>
+<li><i>B)</i> Higher inventory cost, lower transportation cost, faster response, lower variety, better customer experience</li>
+<li><i>C)</i> Lower facility cost and wider variety</li>
+<li><i>D)</i> Harder returns and poorer order visibility</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> Distributor stoku daha dağınık olduğu için inventory artar, yaklaşım müşteriye yakın olduğu için transport düşer ve response hızlanır. Visibility ve returns kolaylaşır.</div>
+</div></article>
+
+<article class="q"><div class="qn">10</div><div class="qb">
+<p class="qt">Which statement about retail storage with customer pickup is TRUE?</p>
+<ul class="opts">
+<li><i>A)</i> Highest inventory and lowest transportation cost, lowest variety, most expensive availability, easiest returns</li>
+<li><i>B)</i> Lowest inventory and highest transportation cost</li>
+<li><i>C)</i> Fastest time to market among all options</li>
+<li><i>D)</i> Returns are hardest because no substitute can be provided</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> Retail store iade edilen ürün için yerine başka ürün verebilir, bu yüzden returns kolaydır. Time to market ise en yavaştır.</div>
+</div></article>
+
+<article class="q"><div class="qn">11</div><div class="qb">
+<p class="qt">When a network model is changed to maximize profit after taxes, the demand constraint changes from Σᵢ xᵢⱼ = Dⱼ to Σᵢ xᵢⱼ ≤ Dⱼ. Why?</p>
+<ul class="opts">
+<li><i>A)</i> Capacity becomes unlimited</li>
+<li><i>B)</i> Tariffs reduce demand automatically</li>
+<li><i>C)</i> Binary variables require inequality</li>
+<li><i>D)</i> The firm is no longer forced to serve all demand; with revenue in the objective, unprofitable markets may be partially or not served</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> Amaç kâr olunca, maliyeti geliri aşan (tarife/vergi nedeniyle) pazarlar karşılanmayabilir.</div>
+</div></article>
+
+<article class="q"><div class="qn">12</div><div class="qb">
+<p class="qt">In the optimal SunOil regional configuration (cost $23,751K), which statement is correct?</p>
+<ul class="opts">
+<li><i>A)</i> North America and Europe both have low-capacity plants</li>
+<li><i>B)</i> Only two plants are open</li>
+<li><i>C)</i> Plants are open in South America, Asia and Africa, all at high capacity, and the Africa plant has 3M units of excess capacity</li>
+<li><i>D)</i> All five regions have an open plant</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> Çözüm tablosunda H sütunu (high capacity) S. America, Asia ve Africa için 1'dir, Africa'da excess capacity 3'tür.</div>
+</div></article>
+
+<article class="q"><div class="qn">13</div><div class="qb">
+<p class="qt">Compared with the multi-sourcing TelecomOptic solution, the single-sourcing solution:</p>
+<ul class="opts">
+<li><i>A)</i> Serves each market from exactly one plant and changes the set of open plants (Salt Lake, Memphis, Wichita open; Baltimore, Cheyenne closed)</li>
+<li><i>B)</i> Keeps the same plants open and only changes allocation</li>
+<li><i>C)</i> Becomes a pure linear program</li>
+<li><i>D)</i> Requires more open plants than before</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> xᵢⱼ binary olunca talep bölünemez, açık plant kümesi değişir. Pure LP olmaz, MIP kalır.</div>
+</div></article>
+
+<article class="q"><div class="qn">14</div><div class="qb">
+<p class="qt">In the model that locates plants and warehouses simultaneously, which variables are binary?</p>
+<ul class="opts">
+<li><i>A)</i> The shipment quantities xₕᵢ, xᵢₑ, xₑⱼ</li>
+<li><i>B)</i> The location variables yᵢ (plants) and yₑ (warehouses); shipments are continuous</li>
+<li><i>C)</i> Supplier capacities Sₕ</li>
+<li><i>D)</i> Market demands Dⱼ</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> Sabit maliyetli plant ve warehouse açma kararları binary'dir. Akışlar (suppliers → plants → warehouses → markets) sürekli değişkendir.</div>
+</div></article>
+
+<article class="q"><div class="qn">15</div><div class="qb">
+<p class="qt">In the Accenture survey, which risk factor affected the highest percentage of supply chains?</p>
+<ul class="opts">
+<li><i>A)</i> Volatility of fuel prices</li>
+<li><i>B)</i> Natural disasters</li>
+<li><i>C)</i> Performance of supply chain partners</li>
+<li><i>D)</i> Currency fluctuation</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> Partner performansı %38; fuel volatility %37, natural disasters %35, currency %29.</div>
+</div></article>
+
+<article class="q"><div class="qn">16</div><div class="qb">
+<p class="qt">Which combination best describes the typical impact of offshoring on total cost dimensions?</p>
+<ul class="opts">
+<li><i>A)</i> Lower freight, shorter lead times, better visibility</li>
+<li><i>B)</i> Higher unit cost and lower inventories</li>
+<li><i>C)</i> Lower hidden costs and better on-time delivery</li>
+<li><i>D)</i> Labor/fixed costs decrease, but lead time and its uncertainty, freight, inventories, working capital and hidden costs increase while visibility worsens</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> Offshoring'de ucuz birim maliyetin karşılığında total cost'u artıran gizli kalemler vardır.</div>
+</div></article>
+
+<article class="q"><div class="qn">17</div><div class="qb">
+<p class="qt">Which describes how the decision tree in the course is evaluated?</p>
+<ul class="opts">
+<li><i>A)</i> Forward from Period 0 using only current values</li>
+<li><i>B)</i> Backward from Period T to Period 0, computing expected cash flows at each node and discounting them by (1+k) per period</li>
+<li><i>C)</i> Only the final period matters</li>
+<li><i>D)</i> Probabilities are ignored and only the worst case is used</li>
+</ul>
+<div class="ans"><b>Cevap: B.</b> Örnek: EP(D=120, p=1,32, Period 1) = −$12.000 → PV = −$10.909.</div>
+</div></article>
+
+<article class="q"><div class="qn">18</div><div class="qb">
+<p class="qt">Which is NOT a consequence of the lack of coordination in a supply chain?</p>
+<ul class="opts">
+<li><i>A)</i> Higher level of product availability</li>
+<li><i>B)</i> Higher inventory cost</li>
+<li><i>C)</i> Longer replenishment lead time</li>
+<li><i>D)</i> Higher transportation cost</li>
+</ul>
+<div class="ans"><b>Cevap: A.</b> Koordinasyon eksikliğinde product availability <b>düşer</b>. Diğer maliyetler ve lead time artar.</div>
+</div></article>
+
+<article class="q"><div class="qn">19</div><div class="qb">
+<p class="qt">A manufacturer rewards its sales force on volume shipped to retailers, leading to end-of-quarter promotions and large orders. Which obstacle is this, and what is the lever?</p>
+<ul class="opts">
+<li><i>A)</i> Pricing obstacle; stabilize prices</li>
+<li><i>B)</i> Operational obstacle; reduce lot sizes</li>
+<li><i>C)</i> Incentive obstacle; move incentives from sell-in to sell-through</li>
+<li><i>D)</i> Behavioral obstacle; build trust</li>
+</ul>
+<div class="ans"><b>Cevap: C.</b> Sales force incentives, incentive obstacle'ın örneğidir. Çözüm: retailer'ın son müşteriye satışına (sell-through) göre ödüllendirmek.</div>
+</div></article>
+
+<article class="q"><div class="qn">20</div><div class="qb">
+<p class="qt">Which CPFR scenario applies mainly to apparel and seasonal goods in department stores?</p>
+<ul class="opts">
+<li><i>A)</i> Retail event collaboration</li>
+<li><i>B)</i> DC replenishment collaboration</li>
+<li><i>C)</i> Store replenishment collaboration</li>
+<li><i>D)</i> Collaborative assortment planning</li>
+</ul>
+<div class="ans"><b>Cevap: D.</b> Event collaboration = yoğun promosyonlu kanallar; DC replenishment = drugstore/hardware/grocery; store replenishment = mass merchants ve club stores.</div>
+</div></article>
+
+</div>
+</section>
+
+<footer>Sınavında başarılar kanka 💪</footer>
+</div>
+
+</body></html>
